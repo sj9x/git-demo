@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Dec 14 13:25:11 2023
+
+@author: swatjain
+"""
+
+### BEST BEST 
+
+import heapq
+class Solution:
+    def topKFrequent(self, words, k):
+        c = {}
+        m = heapq.heapify([])
+        for w in words:
+            try: 
+                c[w] = c[w] + 1
+            except KeyError:
+                c[w] = 1
+        m = [[-1*c[w],w] for w in c.keys()]
+        heapq.heapify(m)
+       #
+        o = []
+        for j in range(k):
+            o.append(heapq.heappop(m)[1])
+        return o
+    
+           
+ 
+#%%               
+class Solution:
+    def topKFrequent(self, words, k):
+        c = {}
+        for w in words:
+            try: 
+                c[w] = c[w] + 1
+            except KeyError:
+                c[w] = 1
+        m = [[-1*c[w],w] for w in c.keys()]
+        m.sort()
+        print(m)
+        m  = [w[1] for w in m]
+        if len(m)<k:
+            return m
+        return m[:k]
+                    
+        
